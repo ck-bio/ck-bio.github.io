@@ -71,9 +71,13 @@
       <p>Last updated: <span id="updated"></span></p>
     </footer>
   </div>
-
-  <script>
-    document.getElementById('updated').textContent = new Date().toLocaleDateString();
-  </script>
+<script>
+    document.getElementById('updated').textContent = 
+        new Date(document.lastModified).toLocaleDateString('default', {
+            day:   '2-digit',
+            month: '2-digit',
+            year:  'numeric'
+        });
+</script>
 </body>
 </html>
