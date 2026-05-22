@@ -3,8 +3,8 @@
   --font-serif: 'Instrument Serif', 'Newsreader', Georgia, serif;
   --font-mono:  'JetBrains Mono', monospace;
   --font-sans:  'Inter', system-ui, sans-serif;
-  --bg:          #192b2f;
-  --surface:     #2d4a50;
+  --bg:          #023847;
+  --surface:     #0e4352;
   --brand:       #056782;
   --accent:      #056782;
   --text-2:      #a8c8d0;
@@ -329,6 +329,8 @@ ul { list-style: none; }
   .interests-grid--5 { grid-template-columns: 1fr; }
   .interests-grid--5 .interest-card { border-right: none !important; border-bottom: 1px solid var(--line) !important; }
   .interests-grid--5 .interest-card:last-child { border-bottom: none !important; }
+  .hero { min-height: 85dvh; max-height: 85dvh; }
+.hero-bg img { object-position: center top; }
 }
 @media (max-width: 540px) {
   .navbar-inner { padding: 0 1.25rem; }
