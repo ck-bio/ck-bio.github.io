@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" type="image/svg+xml">
@@ -15,448 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    /* ── DARK THEME (default) ── */
-    :root, [data-theme="dark"] {
-      --font-serif: 'Instrument Serif', 'Newsreader', Georgia, serif;
-      --font-mono:  'JetBrains Mono', monospace;
-      --font-sans:  'Inter', system-ui, sans-serif;
-      --bg:          #192b2f;
-      --surface:     #2d4a50;
-      --brand:       #056782;
-      --accent:      #056782;
-      --text-2:      #a8c8d0;
-      --text-3:      #6a9aa4;
-      --fg:          #f2f7fa;
-      --line:        rgba(140,168,172,0.15);
-      --line-strong: rgba(140,168,172,0.25);
-      --glass:       rgba(45,74,80,0.6);
-      --hero-overlay-h: rgba(25,43,47,0.95);
-      --hero-overlay-m: rgba(25,43,47,0.7);
-      --hero-overlay-t: rgba(25,43,47,0.2);
-      --hero-overlay-mob-t: rgba(25,43,47,0.88);
-      --hero-overlay-mob-m: rgba(25,43,47,0.55);
-      --outline-hover-bg: rgba(45,74,80,0.9);
-      --radius-md:  0.375rem;
-      --radius-xl:  0.75rem;
-      --radius-3xl: 1.5rem;
-      --ease-out:   cubic-bezier(0, 0, 0.2, 1);
-      --max-w:      1200px;
-      --bar:        3rem;
-    }
-
-    /* ── LIGHT THEME ── */
-    [data-theme="light"] {
-      --bg:          #f0f7f9;
-      --surface:     #dceef2;
-      --text-2:      #2d5a62;
-      --text-3:      #4a8090;
-      --fg:          #0d2428;
-      --line:        rgba(5,103,130,0.12);
-      --line-strong: rgba(5,103,130,0.22);
-      --glass:       rgba(220,238,242,0.7);
-      --hero-overlay-h: rgba(240,247,249,0.92);
-      --hero-overlay-m: rgba(240,247,249,0.65);
-      --hero-overlay-t: rgba(240,247,249,0.15);
-      --hero-overlay-mob-t: rgba(240,247,249,0.88);
-      --hero-overlay-mob-m: rgba(240,247,249,0.55);
-      --outline-hover-bg: rgba(220,238,242,0.9);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border: 0; }
-    html { font-size: 16px; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
-    body {
-      font-family: var(--font-sans); font-weight: 400;
-      background: var(--bg); color: var(--fg);
-      min-height: 100vh; display: flex; flex-direction: column;
-      padding-bottom: calc(var(--bar) + env(safe-area-inset-bottom));
-      transition: background 0.3s, color 0.3s;
-    }
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; height: auto; }
-    ul { list-style: none; }
-
-    .display-serif { font-family: var(--font-serif); font-optical-sizing: auto; letter-spacing: -0.02em; font-weight: 400; line-height: 1.04; }
-    .display-serif em { color: var(--accent); font-style: italic; }
-
-    .eyebrow { font-family: var(--font-sans); letter-spacing: 0.22em; text-transform: uppercase; color: var(--brand); font-size: 11px; font-weight: 600; }
-
-    /* ── NAV ── */
-    .navbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-      height: var(--bar);
-      background: rgba(5,103,130,0.12);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-      transition: background 0.3s;
-    }
-    [data-theme="light"] .navbar {
-      background: rgba(240,247,249,0.65);
-      border-bottom-color: rgba(5,103,130,0.1);
-    }    [data-theme="light"] .navbar .navbar-links a { color: rgba(13,36,40,0.7); }
-    [data-theme="light"] .navbar .navbar-links a:hover { color: #0d2428; }
-    [data-theme="light"] .navbar .navbar-links a.active { color: #0d2428; }
-    [data-theme="light"] .navbar .navbar-links a::after { background: #0d2428; }
-    .navbar-inner {
-      max-width: var(--max-w); margin: 0 auto; height: 100%;
-      display: flex; align-items: center; justify-content: space-between; padding: 0 2rem;
-    }
-    .navbar-links { display: flex; align-items: center; gap: 2rem; }
-    .navbar-links a {
-      font-size: 0.9rem; font-weight: 600; color: rgba(255,255,255,0.75);
-      transition: color 0.2s; position: relative;
-    }
-    .navbar-links a::after {
-      content: ''; position: absolute; bottom: -4px; left: 0;
-      height: 2px; width: 0; background: rgba(255,255,255,0.9); transition: width 0.3s;
-    }
-    .navbar-links a:hover { color: #fff; }
-    .navbar-links a:hover::after { width: 100%; }
-    .navbar-links a.active { color: #fff; }
-    .navbar-links a.active::after { width: 100%; }
-
-    /* ── NAV CONTROLS ── */
-    .nav-controls { display: flex; align-items: center; gap: 0.5rem; }
-
-    /* shared pill style — always visible over any bg */
-    .nav-pill {
-      display: flex; align-items: center; justify-content: center;
-      width: 2.25rem; height: 2.25rem; border-radius: 9999px; cursor: pointer;
-      background: rgba(5,103,130,0.18); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.85);
-      transition: background 0.2s, border-color 0.2s, color 0.2s;
-    }
-    .nav-pill:hover { background: rgba(5,103,130,0.45); border-color: rgba(255,255,255,0.4); color: #fff; }
-    [data-theme="light"] .nav-pill {
-      background: rgba(255,255,255,0.55); border-color: rgba(5,103,130,0.25); color: rgba(13,36,40,0.8);
-    }
-    [data-theme="light"] .nav-pill:hover { background: rgba(255,255,255,0.85); border-color: rgba(5,103,130,0.5); color: #0d2428; }
-
-    .theme-btn { background: none; }
-
-    /* animated sun/moon swap */
-    .theme-icon-wrap {
-      position: relative; width: 15px; height: 15px;
-    }
-    .icon-moon, .icon-sun {
-      position: absolute; top: 0; left: 0;
-      transition: opacity 0.3s, transform 0.4s var(--ease-out);
-    }
-    .icon-moon { opacity: 1; transform: rotate(0deg) scale(1); }
-    .icon-sun  { opacity: 0; transform: rotate(-90deg) scale(0.6); }
-    [data-theme="light"] .icon-moon { opacity: 0; transform: rotate(90deg) scale(0.6); }
-    [data-theme="light"] .icon-sun  { opacity: 1; transform: rotate(0deg) scale(1); }
-
-    /* ── HAMBURGER BUTTON ── */
-    .menu-btn {
-      display: none; flex-direction: column; justify-content: center;
-      gap: 0; background: none; cursor: pointer; padding: 0;
-      width: 2.25rem; height: 2.25rem;
-    }
-    .bar {
-      display: block; width: 16px; height: 1.5px;
-      background: currentColor; border-radius: 2px;
-      transition: transform 0.3s var(--ease-out), opacity 0.2s, width 0.3s var(--ease-out);
-      transform-origin: center;
-      margin: 2.5px auto;
-    }
-    /* open state: top bar rotates to \, bottom bar rotates to /, middle fades */
-    .menu-btn.open .bar:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-    .menu-btn.open .bar:nth-child(2) { opacity: 0; width: 0; }
-    .menu-btn.open .bar:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-
-    /* ── MOBILE DRAWER ── */
-    .mobile-menu {
-      position: fixed; top: var(--bar); left: 0; right: 0;
-      bottom: calc(var(--bar) + env(safe-area-inset-bottom));
-      z-index: 48; background: var(--brand);
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
-      opacity: 0; pointer-events: none; transform: translateX(100%);
-      transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
-    }
-    .mobile-menu.open { opacity: 1; pointer-events: auto; transform: translateX(0); }
-    .mobile-menu a { font-size: 1.75rem; font-weight: 600; color: rgba(255,255,255,0.7); transition: color 0.2s; }
-    .mobile-menu a:hover, .mobile-menu a.active { color: #fff; }
-
-    /* ── HERO ── */
-    .hero {
-      position: relative; overflow: hidden;
-      min-height: 100dvh; display: flex; flex-direction: column;
-    }
-    .hero-bg { position: absolute; inset: 0; z-index: 0; }
-    .hero-bg img {
-      width: 100%; height: 100%; object-fit: cover; object-position: center right;
-      will-change: filter;
-    }
-    .hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to right, var(--hero-overlay-h) 0%, var(--hero-overlay-m) 50%, var(--hero-overlay-t) 100%);
-    }
-    .hero-content {
-      position: relative; z-index: 10;
-      max-width: var(--max-w); margin: 0 auto; width: 100%;
-      padding: 8rem 2rem 5rem; flex: 1;
-      display: flex; align-items: center;
-    }
-    .hero-text { max-width: 42rem; display: flex; flex-direction: column; gap: 1.5rem; }
-    .hero-pill {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      align-self: flex-start;
-      border: 1px solid var(--line-strong); border-radius: 9999px;
-      padding: 0.25rem 0.75rem; font-size: 0.75rem; font-weight: 500; color: var(--text-3);
-    }
-    .hero-h1 { font-size: clamp(3rem, 7vw, 4.5rem); }
-    .hero-tagline { font-size: 1.125rem; color: var(--text-2); line-height: 1.65; max-width: 36rem; }
-    .hero-ctas { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
-      font-family: var(--font-sans); font-weight: 500; white-space: nowrap; cursor: pointer;
-      transition: background-color 0.2s, border-color 0.2s, color 0.2s; text-decoration: none;
-    }
-    .btn-default { background: var(--accent); color: #fff; border-radius: var(--radius-xl); height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
-    .btn-default:hover { background: #044f65; }
-    .btn-outline { border: 1px solid var(--line-strong); color: var(--text-3); background: transparent; border-radius: var(--radius-xl); height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
-    .btn-outline:hover { border-color: var(--brand); color: var(--text-3); }
-    .btn-ghost { color: var(--fg); background: transparent; padding: 0; font-size: 0.875rem; font-weight: 600; height: 2.25rem; }
-    .btn-ghost:hover { color: var(--accent); }
-    .btn-ghost svg { transition: transform 0.2s; }
-    .btn-ghost:hover svg { transform: translateX(3px); }
-
-    /* ── GLASS CARD ── */
-    .glass-card { background: var(--glass); border: 1px solid var(--line); border-radius: var(--radius-3xl); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: border-color 0.25s, box-shadow 0.25s; }
-    .glass-card:hover { border-color: rgba(5,103,130,0.5); box-shadow: 0 0 0 1px rgba(5,103,130,0.15), inset 0 0 20px rgba(5,103,130,0.04); }
-
-    /* ── SECTIONS ── */
-    .section { padding: 5rem 0; }
-    .section-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
-    .section-label { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 3rem; }
-    .section-label h2 { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 400; letter-spacing: -0.02em; line-height: 1.1; margin-top: 0.4rem; }
-    .eyebrow-lg { font-family: var(--font-sans); letter-spacing: 0.18em; text-transform: uppercase; color: var(--brand); font-size: 0.85rem; font-weight: 700; }
-
-    /* ── ABOUT ── */
-    .about-grid { display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center; }
-    .about-text p { font-size: 1.05rem; line-height: 1.75; color: var(--text-2); max-width: 52ch; }
-    .portrait-ring {
-      width: 11rem; height: 11rem; flex-shrink: 0;
-      border-radius: 50%; border: 1px solid var(--line-strong);
-      background: var(--surface); padding: 0.5rem; overflow: hidden;
-    }
-    .portrait-ring img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-    .portrait-placeholder {
-      width: 100%; height: 100%; border-radius: 50%;
-      background: linear-gradient(135deg, var(--surface) 0%, var(--brand) 100%);
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-3);
-      letter-spacing: 0.1em; text-align: center; padding: 1rem;
-    }
-
-    /* ── RESEARCH INTERESTS ── */
-    .section-dark { background: #0d1517; transition: background 0.3s; }
-    [data-theme="light"] .section-dark { background: var(--surface); }
-    .interests-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      border: 1px solid var(--line); border-radius: var(--radius-3xl); overflow: hidden;
-    }
-    .interests-grid--5 { grid-template-columns: repeat(3, 1fr); }
-    .interests-grid--5 .interest-card:nth-child(3) { border-right: none; }
-    .interests-grid--5 .interest-card:nth-child(3), .interests-grid--5 .interest-card:nth-child(4), .interests-grid--5 .interest-card:nth-child(5) { border-bottom: none; }
-    .interests-grid--5 .interest-card:nth-child(4) { border-right: 1px solid var(--line); }
-    .interests-grid--5 .interest-card:nth-child(4), .interests-grid--5 .interest-card:nth-child(5) { grid-row: 2; }
-    /* centre the bottom 2 in a 3-col grid */
-    .interests-grid--5 .interest-card:nth-child(4) { grid-column: 1; }
-    .interests-grid--5 .interest-card:nth-child(5) { grid-column: 2; border-right: none; }
-    @media (max-width: 768px) { .interests-grid--5 { grid-template-columns: 1fr; } .interests-grid--5 .interest-card { border-right: none !important; border-bottom: 1px solid var(--line) !important; } .interests-grid--5 .interest-card:last-child { border-bottom: none !important; } }
-    .interest-card {
-      padding: 2.5rem;
-      border-right: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      transition: background 0.2s;
-    }
-    .interest-card:nth-child(even) { border-right: none; }
-    .interest-card:nth-child(3),
-    .interest-card:nth-child(4) { border-bottom: none; }
-    .interest-card:hover { background: rgba(5,103,130,0.07); }
-    .interest-num {
-      font-family: var(--font-mono); font-size: 0.62rem;
-      letter-spacing: 0.12em; color: var(--text-3); display: block; margin-bottom: 1.25rem;
-    }
-    .interest-title {
-      font-family: var(--font-serif);
-      font-size: clamp(1.5rem, 2.5vw, 2rem);
-      font-weight: 400; letter-spacing: -0.02em; line-height: 1.1;
-      margin-bottom: 1.25rem;
-    }
-    .interest-title em { color: var(--accent); font-style: italic; }
-    .interest-desc { font-size: 0.9rem; color: var(--text-3); line-height: 1.7; max-width: 38ch; }
-
-    /* ── PILLARS ── */
-    .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    .pillar-card { display: flex; flex-direction: column; padding: 1.75rem; height: 100%; }
-    .pillar-num { font-family: var(--font-sans); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand); margin-bottom: 1rem; display: block; }
-    .pillar-card h3 { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 400; letter-spacing: -0.01em; line-height: 1.25; color: var(--fg); margin-bottom: 0.75rem; }
-    .pillar-card > p { font-size: 0.875rem; color: var(--text-2); line-height: 1.65; margin-bottom: 1.25rem; }
-    .pillar-bullets { display: flex; flex-direction: column; gap: 0.55rem; flex: 1; margin-bottom: 1.5rem; }
-    .pillar-bullets li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.85rem; color: var(--text-3); line-height: 1.55; }
-    .bullet-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 0.5rem; }
-    .pillar-footer { margin-top: auto; padding-top: 1.25rem; border-top: 1px solid var(--line); }
-
-    /* ── FOOTER ── */
-    .footer {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 49;
-      height: var(--bar); padding-bottom: env(safe-area-inset-bottom);
-      background: var(--brand); border-top: 1px solid rgba(255,255,255,0.08);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .footer-inner { display: flex; align-items: center; justify-content: center; gap: 0.25rem; }
-    .footer-icon {
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,0.55); min-width: 44px; min-height: 44px;
-      border-radius: 8px;
-      transition: color 0.2s, background 0.2s, transform 0.2s;
-      position: relative;
-    }
-    .footer-icon:hover {
-      color: #fff;
-      transform: scale(1.12);
-    }
-    .footer-icon svg { width: 19px; height: 19px; fill: currentColor; }
-
-    /* ── SCROLL TOP ── */
-    .scroll-top {
-      position: fixed;
-      bottom: calc(var(--bar) + env(safe-area-inset-bottom) + 0.75rem);
-      right: 1.25rem; z-index: 50;
-      width: 2.5rem; height: 2.5rem; border-radius: 50%;
-      background: rgba(5,103,130,0.18); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.85);
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; opacity: 0; transform: translateY(1rem); pointer-events: none;
-      transition: opacity 0.3s, transform 0.3s, background 0.2s, color 0.2s;
-    }
-    .scroll-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
-    .scroll-top:hover { background: rgba(5,103,130,0.45); border-color: rgba(255,255,255,0.4); color: #fff; }
-    [data-theme="light"] .scroll-top { background: rgba(255,255,255,0.55); border-color: rgba(5,103,130,0.25); color: rgba(13,36,40,0.8); }
-    [data-theme="light"] .scroll-top:hover { background: rgba(255,255,255,0.85); border-color: rgba(5,103,130,0.5); color: #0d2428; }
-
-    /* ── FADE UP ── */
-    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out); }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 1024px) { .pillars-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 768px) {
-      .navbar-links { display: none; }
-      .navbar-inner { justify-content: space-between; }
-      .menu-btn { display: flex; }
-      .hero-h1 { font-size: 2.75rem; }
-      .hero-content { padding: 6rem 1.25rem 4rem; align-items: flex-end; }
-      .hero-overlay { background: linear-gradient(to bottom, var(--hero-overlay-mob-t) 0%, var(--hero-overlay-mob-m) 55%, var(--hero-overlay-mob-t) 100%); }
-      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .portrait-ring { order: -1; }
-      .interests-grid { grid-template-columns: 1fr; }
-      .interest-card { border-right: none; }
-      .interest-card:nth-child(3) { border-bottom: 1px solid var(--line); }
-      .pillars-grid { grid-template-columns: 1fr; }
-      .section-inner { padding: 0 1.25rem; }
-      .footer-inner { gap: 0; justify-content: space-around; width: 100%; }
-      .hero-ctas { flex-direction: column; gap: 0.5rem; }
-      .hero-ctas .btn { width: 100%; height: 3.75rem; border-radius: var(--radius-xl); justify-content: center; }
-    }
-    @media (max-width: 540px) {
-      .navbar-inner { padding: 0 1.25rem; }
-      .section { padding: 3.5rem 0; }
-    }
-
-    /* ── PUBLICATIONS LIST ── */
-    .pub-list { display: flex; flex-direction: column; }
-    .pub-item {
-      padding: 1.75rem 0;
-      border-bottom: 1px solid var(--line);
-      display: grid; grid-template-columns: 1fr auto;
-      grid-template-rows: auto auto auto;
-      gap: 0.3rem 2rem;
-      align-items: start;
-      transition: background 0.2s;
-    }
-    .pub-item:first-child { border-top: 1px solid var(--line); }
-    .pub-item--muted { opacity: 0.6; }
-    .pub-item--muted:hover { opacity: 1; }
-    .pub-meta {
-      grid-column: 1 / -1; display: flex; align-items: center; gap: 0.75rem;
-      margin-bottom: 0.2rem;
-    }
-    .pub-type {
-      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--brand);
-    }
-    .pub-year { font-size: 0.75rem; color: var(--text-3); }
-    .pub-title {
-      font-family: var(--font-serif); font-size: 1.1rem; font-weight: 400;
-      letter-spacing: -0.01em; line-height: 1.35; color: var(--fg);
-      grid-column: 1; margin: 0;
-    }
-    .pub-title a { color: inherit; transition: color 0.2s; }
-    .pub-title a:hover { color: var(--accent); }
-    .pub-authors { font-size: 0.85rem; color: var(--text-2); grid-column: 1; margin: 0; }
-    .pub-authors strong { color: var(--fg); font-weight: 600; }
-    .pub-journal { font-size: 0.8rem; color: var(--text-3); grid-column: 1; margin: 0; font-style: italic; }
-    .pub-doi {
-      font-size: 0.75rem; color: var(--accent); white-space: nowrap;
-      grid-column: 2; grid-row: 2 / 4; align-self: center;
-      transition: color 0.2s;
-    }
-    .pub-doi:hover { color: var(--fg); }
-
-    /* tools 2-col override */
-    .tools-grid { grid-template-columns: repeat(2, 1fr); }
-    @media (max-width: 1024px) { .tools-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 768px) { .tools-grid { grid-template-columns: 1fr; } }
-    /* ── CLICKABLE CARDS ── */
-    .interest-card--link, .pillar-card--link {
-      display: block; text-decoration: none; color: inherit; cursor: pointer;
-    }
-    .interest-card--link:hover { background: rgba(5,103,130,0.07); }
-    .pillar-card--link { transition: border-color 0.25s, box-shadow 0.25s; }
-    .pillar-card--link:hover { border-color: rgba(5,103,130,0.5); box-shadow: 0 0 0 1px rgba(5,103,130,0.15), inset 0 0 20px rgba(5,103,130,0.04); }
-    /* ── PROJECT CARDS WITH BG IMAGE ── */
-    .project-card {
-      position: relative; overflow: hidden; min-height: 260px;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 0; text-decoration: none; color: inherit;
-      border-radius: var(--radius-3xl); border: 1px solid var(--line);
-      transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
-    }
-    .project-card:hover {
-      border-color: rgba(5,103,130,0.5);
-      box-shadow: 0 0 0 1px rgba(5,103,130,0.15), 0 8px 32px rgba(0,0,0,0.25);
-      transform: translateY(-2px);
-    }
-    .project-card-bg {
-      position: absolute; inset: 0;
-      background-size: cover; background-position: center;
-      background-color: var(--surface);
-      transition: transform 0.4s var(--ease-out);
-    }
-    .project-card:hover .project-card-bg { transform: scale(1.03); }
-    .project-card-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(13,26,28,0.75) 0%, rgba(13,26,28,0.35) 55%, rgba(13,26,28,0.05) 100%);
-    }
-    [data-theme="light"] .project-card-overlay {
-      background: linear-gradient(to top, rgba(8,20,22,0.68) 0%, rgba(8,20,22,0.28) 55%, rgba(8,20,22,0.05) 100%);
-    }
-    .project-card-body {
-      position: relative; z-index: 2;
-      padding: 1.75rem;
-    }
-    .project-card-body h3 {
-      font-family: var(--font-serif); font-size: 1.2rem; font-weight: 400;
-      letter-spacing: -0.01em; line-height: 1.25; color: #fff; margin-bottom: 0.6rem;
-    }
-    .project-card-body p {
-      font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.6; margin: 0;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -468,7 +27,10 @@
         <span class="bar"></span>
       </button>
       <ul class="navbar-links" role="list">
-        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#tools">Tools</a></li>
+        <li><a href="#publications">Publications</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -484,7 +46,10 @@
   </nav>
 
   <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true">
-    <a href="index.html" class="active">Home</a>
+    <a href="#" class="active">Home</a>
+    <a href="#projects">Projects</a>
+    <a href="#tools">Tools</a>
+    <a href="#publications">Publications</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </div>
@@ -498,13 +63,13 @@
         <div class="hero-overlay" aria-hidden="true"></div>
       </div>
       <div class="hero-content">
-        <div class="hero-text fade-up">
+        <div class="hero-text">
           <span class="hero-pill">PhD · Cell &amp; Molecular Biology</span>
           <h1 class="display-serif hero-h1">
-            Hi, I'm Christos.<br>
-            <em>I build things <br>
-            & modify the matrix</em>
+            Hi, I'm Dave.<br>
+            <em>I build things<br>& modify the matrix.</em>
           </h1>
+          <p class="hero-tagline">Working at the interface of cancer research and biomaterials science.</p>
           <div class="hero-ctas">
             <a href="#projects" class="btn btn-default">
               <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
@@ -521,22 +86,22 @@
 
     <!-- PROJECTS PREVIEW -->
     <section class="section" id="projects">
-      <div class="section-inner fade-up">
+      <div class="section-inner">
         <div class="section-label">
           <span class="eyebrow-lg">Projects</span>
         </div>
         <div class="pillars-grid">
 
-          <a href="projects.html#sha" class="project-card fade-up" style="transition-delay:0.05s">
+          <a href="projects.html#sha" class="project-card">
             <div class="project-card-bg" style="background-image: url('img/project1.webp')"></div>
             <div class="project-card-overlay"></div>
             <div class="project-card-body">
               <h3>HA &amp; sHA in breast cancer</h3>
-              <p>Modified hyaluronan as an antitumour agent: how chemical substitution changes its interaction with CD44 and downstream signalling in breast cancer models.</p>
+              <p>Modified hyaluronan as an antitumour agent — how chemical substitution changes its interaction with CD44 and downstream signalling in breast cancer models.</p>
             </div>
           </a>
 
-          <a href="projects.html#3d" class="project-card fade-up" style="transition-delay:0.08s">
+          <a href="projects.html#3d" class="project-card">
             <div class="project-card-bg" style="background-image: url('img/project2.webp')"></div>
             <div class="project-card-overlay"></div>
             <div class="project-card-body">
@@ -545,8 +110,17 @@
             </div>
           </a>
 
-          <a href="projects.html#neuro" class="project-card fade-up" style="transition-delay:0.11s">
+          <a href="projects.html#neuro" class="project-card">
             <div class="project-card-bg" style="background-image: url('img/project3.webp')"></div>
+            <div class="project-card-overlay"></div>
+            <div class="project-card-body">
+              <h3>Neurobiology &amp; stem cells</h3>
+              <p>MSc-era work on neural differentiation and stem cell behaviour. Characterising early lineage commitment and the niche signals that drive it.</p>
+            </div>
+          </a>
+
+          <a href="projects.html#ecm" class="project-card">
+            <div class="project-card-bg" style="background-image: url('img/project4.webp')"></div>
             <div class="project-card-overlay"></div>
             <div class="project-card-body">
               <h3>ECM &amp; the tumour microenvironment</h3>
@@ -554,21 +128,12 @@
             </div>
           </a>
 
-          <a href="projects.html#ecm" class="project-card fade-up" style="transition-delay:0.14s">
-            <div class="project-card-bg" style="background-image: url('img/project4.webp')"></div>
-            <div class="project-card-overlay"></div>
-            <div class="project-card-body">
-              <h3>Neurobiology &amp; stem cells</h3>
-              <p>Work on  stem cell behaviour. Characterising early lineage commitment and the niche signals that drive it.</p>
-            </div>
-          </a>
-
-          <a href="projects.html#drug" class="project-card fade-up" style="transition-delay:0.17s">
+          <a href="projects.html#drug" class="project-card">
             <div class="project-card-bg" style="background-image: url('img/project5.webp')"></div>
             <div class="project-card-overlay"></div>
             <div class="project-card-body">
               <h3>Drug validation</h3>
-              <p>Preclinical validation of candidate compounds in cancer cell lines - dose-response, selectivity, and mechanism-of-action studies.</p>
+              <p>Preclinical validation of candidate compounds in breast cancer models: dose-response, selectivity, and mechanism-of-action studies.</p>
             </div>
           </a>
 
@@ -577,12 +142,12 @@
     </section>
 
     <!-- TOOLS PREVIEW -->
-    <section class="section section-dark">
+    <section class="section section-dark" id="tools">
       <div class="section-inner">
-        <div class="section-label fade-up">
+        <div class="section-label">
           <span class="eyebrow-lg">Tools I've Built</span>
         </div>
-        <div class="interests-grid fade-up" style="transition-delay:0.1s">
+        <div class="interests-grid">
 
           <a href="tools.html#qpcr" class="interest-card interest-card--link">
             <h3 class="interest-title">qPCR<br><em>analysis</em></h3>
@@ -598,20 +163,20 @@
       </div>
     </section>
 
-    <!-- PUBLICATIONS PREVIEW -->
-    <section class="section">
+    <section class="section" id="publications">
       <div class="section-inner">
-        <div class="section-label fade-up">
+        <div class="section-label">
           <span class="eyebrow-lg">Publications</span>
         </div>
-        <div class="pub-list fade-up" style="transition-delay:0.1s">
+        <div class="pub-list">
 
+          
           <article class="pub-item">
-            <div class="pub-meta"><span class="pub-type">Research article</span><span class="pub-year">2023</span></div>
+            <div class="pub-meta"><span class="pub-type">Book chapter</span><span class="pub-year">2023</span></div>
             <h3 class="pub-title">Sulfated hyaluronan: a novel player in cancer therapeutic and bioengineering approaches</h3>
             <p class="pub-authors"><strong>Koutsakis C</strong>, Tavianatou AG, Kokoretsis D, Karamanos NΚ</p>
             <p class="pub-journal">Biology of Extracellular Matrix - Hyaluronan · 2023</p>
-            <a href="https://doi.org/XXXX" target="_blank" rel="noopener" class="pub-doi">doi:10.XXXX/XXXX ↗</a>
+            <a href="https://doi.org/XXXX" target="_blank" rel="noopener" class="pub-doi">10.1007/978-3-031-30300-5_10 ↗</a>
           </article>
 
           <article class="pub-item">
@@ -619,23 +184,23 @@
             <h3 class="pub-title">Recreating the extracellular matrix: novel 3D cell culture platforms in cancer research </h3>
             <p class="pub-authors"><strong>Koutsakis C*</strong>, Kyriakopoulou K*, Piperigkou Z*, Karamanos NK</p>
             <p class="pub-journal">The FEBS Journal · 2023</p>
-            <a href="https://doi.org/XXXX" target="_blank" rel="noopener" class="pub-doi">doi:10.XXXX/XXXX ↗</a>
-          </article>
-
-          <article class="pub-item">
-            <div class="pub-meta"><span class="pub-type">Book chapter</span><span class="pub-year">2021</span></div>
-            <h3 class="pub-title">Principal mechanisms of extracellular matrix-mediated cell-cell communication in physiological and tumor microenvironments</h3>
-            <p class="pub-authors">Piperigkou Z, Mangani S, Koletsis N, <strong>Koutsakis C</strong>, Mastronikolis NS, Franchi M, Karamanos NK</p>
-            <p class="pub-journal">The FEBS Journal · 2026</p>
-            <a href="https://doi.org/XXXX" target="_blank" rel="noopener" class="pub-doi">doi:10.XXXX/XXXX ↗</a>
+            <a href="https://doi.org/XXXX" target="_blank" rel="noopener" class="pub-doi">10.1111/febs.16778 ↗</a>
           </article>
 
           <article class="pub-item">
             <div class="pub-meta"><span class="pub-type">Review</span><span class="pub-year">2021</span></div>
-            <h3 class="pub-title">Isolation of neuron stem and oligodendrocyte progenitor cells from the subependymal zone of live rats</h3>
+            <h3 class="pub-title">Principal mechanisms of extracellular matrix-mediated cell-cell communication in physiological and tumor microenvironments</h3>
+            <p class="pub-authors">Piperigkou Z, Mangani S, Koletsis N, <strong>Koutsakis C</strong>, Mastronikolis NS, Franchi M, Karamanos NK</p>
+            <p class="pub-journal">The FEBS Journal · 2026</p>
+            <a href="https://doi.org/XXXX" target="_blank" rel="noopener" class="pub-doi">10.1111/febs.70207 ↗</a>
+          </article>
+
+          <article class="pub-item">
+            <div class="pub-meta"><span class="pub-type">Research article</span><span class="pub-year">2021</span></div>
+            <h3 class="pub-title">Isolation of neural stem and oligodendrocyte progenitor cells from the subependymal zone of live rats</h3>
             <p class="pub-authors">McClenahan F, Dimitriou C, <strong>Koutsakis C</strong>, Dimitrakopoulos D, Arampatzis A, Kakouri P, Kourla M, Oikonomou S, Andreopoulou E, Patsonis M, Meri DK, Rasool RT, Franklin RJ, Kazanis I</p>
             <p class="pub-journal">Stem Cell Reports · 2021</p>
-            <a href="https://doi.org/XXXX" target="_blank" rel="noopener" class="pub-doi">doi:10.XXXX/XXXX ↗</a>
+            <a href="https://doi.org/XXXX" target="_blank" rel="noopener" class="pub-doi">10.1016/j.stemcr.2021.08.015 ↗</a>
           </article>
 
           <article class="pub-item pub-item--muted">
@@ -650,104 +215,18 @@
 
   <footer class="footer">
     <div class="footer-inner">
-      <a href="https://linkedin.com/in/ckoutsakis" target="_blank" rel="noopener" class="footer-icon" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-      <a href="https://github.com/ck-bio" target="_blank" rel="noopener" class="footer-icon" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
-      <a href="https://scholar.google.com/citations?user=hE_3P08AAAAJ" target="_blank" rel="noopener" class="footer-icon" aria-label="Google Scholar"><svg viewBox="0 0 24 24"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 10a8 8 0 0 1 7.162 3.44L24 9.5z"/></svg></a>
-      <a href="https://orcid.org/0000-0001-8705-7867" target="_blank" rel="noopener" class="footer-icon" aria-label="ORCID"><svg viewBox="0 0 24 24"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.016-5.325 5.016h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 3.872-2.944 3.872-3.722 0-2.016-1.284-3.722-3.9-3.722h-2.269z"/></svg></a>
-      <a href="https://www.researchgate.net/profile/Christos_Koutsakis" target="_blank" rel="noopener" class="footer-icon" aria-label="ResearchGate"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.586 0c-.818 0-1.508.19-2.073.565-.563.377-.97.936-1.213 1.68a3.193 3.193 0 0 0-.112.437 8.365 8.365 0 0 0-.078.53 9 9 0 0 0-.05.727c-.01.282-.013.621-.013 1.016a31.121 31.123 0 0 0 .014 1.017 9 9 0 0 0 .05.727 7.946 7.946 0 0 0 .077.53h-.005a3.334 3.334 0 0 0 .113.438c.245.743.65 1.303 1.214 1.68.565.376 1.256.564 2.075.564.8 0 1.536-.213 2.105-.603.57-.39.94-.916 1.175-1.65.076-.235.135-.558.177-.93a10.9 10.9 0 0 0 .043-1.207v-.82c0-.095-.047-.142-.14-.142h-3.064c-.094 0-.14.047-.14.141v.956c0 .094.046.14.14.14h1.666c.056 0 .084.03.084.086 0 .36 0 .62-.036.865-.038.244-.1.447-.147.606-.108.385-.348.664-.638.876-.29.212-.738.35-1.227.35-.545 0-.901-.15-1.21-.353-.306-.203-.517-.454-.67-.915a3.136 3.136 0 0 1-.147-.762 17.366 17.367 0 0 1-.034-.656c-.01-.26-.014-.572-.014-.939a26.401 26.403 0 0 1 .014-.938 15.821 15.822 0 0 1 .035-.656 3.19 3.19 0 0 1 .148-.76 1.89 1.89 0 0 1 .742-1.01c.344-.244.593-.352 1.137-.352.508 0 .815.096 1.144.303.33.207.528.492.764.925.047.094.111.118.198.07l1.044-.43c.075-.048.09-.115.042-.199a3.549 3.549 0 0 0-.466-.742 3 3 0 0 0-.679-.607 3.313 3.313 0 0 0-.903-.41A4.068 4.068 0 0 0 19.586 0zM8.217 5.836c-1.69 0-3.036.086-4.297.086-1.146 0-2.291 0-3.007-.029v.831l1.088.2c.744.144 1.174.488 1.174 2.264v11.288c0 1.777-.43 2.12-1.174 2.263l-1.088.2v.832c.773-.029 2.12-.086 3.465-.086 1.29 0 2.951.057 3.667.086v-.831l-1.49-.2c-.773-.115-1.174-.487-1.174-2.264v-4.784c.688.057 1.29.057 2.206.057 1.748 3.123 3.41 5.472 4.355 6.56.86 1.032 2.177 1.691 3.839 1.691.487 0 1.003-.086 1.318-.23v-.744c-1.031 0-2.063-.716-2.808-1.518-1.26-1.376-2.95-3.582-4.355-6.074 2.32-.545 4.04-2.722 4.04-4.9 0-3.208-2.492-4.698-5.758-4.698zm-.515 1.29c2.406 0 3.839 1.26 3.839 3.552 0 2.263-1.547 3.782-4.097 3.782-.974 0-1.404-.03-2.063-.086v-7.19c.66-.059 1.547-.059 2.32-.059z"/></svg></a>
-       </div>
+      <a href="https://linkedin.com/in/ckoutsakis" target="_blank" rel="noopener noreferrer" class="footer-icon" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      <a href="https://github.com/ck-bio" target="_blank" rel="noopener noreferrer" class="footer-icon" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+      <a href="https://scholar.google.com/citations?user=hE_3P08AAAAJ" target="_blank" rel="noopener noreferrer" class="footer-icon" aria-label="Google Scholar"><svg viewBox="0 0 24 24"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 10a8 8 0 0 1 7.162 3.44L24 9.5z"/></svg></a>
+      <a href="https://orcid.org/0000-0001-8705-7867" target="_blank" rel="noopener noreferrer" class="footer-icon" aria-label="ORCID"><svg viewBox="0 0 24 24"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.016-5.325 5.016h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 3.872-2.944 3.872-3.722 0-2.016-1.284-3.722-3.9-3.722h-2.269z"/></svg></a>
+      <a href="https://www.researchgate.net/profile/Christos_Koutsakis" target="_blank" rel="noopener noreferrer" class="footer-icon" aria-label="ResearchGate"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.586 0c-.818 0-1.508.19-2.073.565-.563.377-.97.936-1.213 1.68a3.193 3.193 0 0 0-.112.437 8.365 8.365 0 0 0-.078.53 9 9 0 0 0-.05.727c-.01.282-.013.621-.013 1.016a31.121 31.123 0 0 0 .014 1.017 9 9 0 0 0 .05.727 7.946 7.946 0 0 0 .077.53h-.005a3.334 3.334 0 0 0 .113.438c.245.743.65 1.303 1.214 1.68.565.376 1.256.564 2.075.564.8 0 1.536-.213 2.105-.603.57-.39.94-.916 1.175-1.65.076-.235.135-.558.177-.93a10.9 10.9 0 0 0 .043-1.207v-.82c0-.095-.047-.142-.14-.142h-3.064c-.094 0-.14.047-.14.141v.956c0 .094.046.14.14.14h1.666c.056 0 .084.03.084.086 0 .36 0 .62-.036.865-.038.244-.1.447-.147.606-.108.385-.348.664-.638.876-.29.212-.738.35-1.227.35-.545 0-.901-.15-1.21-.353-.306-.203-.517-.454-.67-.915a3.136 3.136 0 0 1-.147-.762 17.366 17.367 0 0 1-.034-.656c-.01-.26-.014-.572-.014-.939a26.401 26.403 0 0 1 .014-.938 15.821 15.822 0 0 1 .035-.656 3.19 3.19 0 0 1 .148-.76 1.89 1.89 0 0 1 .742-1.01c.344-.244.593-.352 1.137-.352.508 0 .815.096 1.144.303.33.207.528.492.764.925.047.094.111.118.198.07l1.044-.43c.075-.048.09-.115.042-.199a3.549 3.549 0 0 0-.466-.742 3 3 0 0 0-.679-.607 3.313 3.313 0 0 0-.903-.41A4.068 4.068 0 0 0 19.586 0zM8.217 5.836c-1.69 0-3.036.086-4.297.086-1.146 0-2.291 0-3.007-.029v.831l1.088.2c.744.144 1.174.488 1.174 2.264v11.288c0 1.777-.43 2.12-1.174 2.263l-1.088.2v.832c.773-.029 2.12-.086 3.465-.086 1.29 0 2.951.057 3.667.086v-.831l-1.49-.2c-.773-.115-1.174-.487-1.174-2.264v-4.784c.688.057 1.29.057 2.206.057 1.748 3.123 3.41 5.472 4.355 6.56.86 1.032 2.177 1.691 3.839 1.691.487 0 1.003-.086 1.318-.23v-.744c-1.031 0-2.063-.716-2.808-1.518-1.26-1.376-2.95-3.582-4.355-6.074 2.32-.545 4.04-2.722 4.04-4.9 0-3.208-2.492-4.698-5.758-4.698zm-.515 1.29c2.406 0 3.839 1.26 3.839 3.552 0 2.263-1.547 3.782-4.097 3.782-.974 0-1.404-.03-2.063-.086v-7.19c.66-.059 1.547-.059 2.32-.059z"/></svg></a>
+      </div>
   </footer>
 
   <button id="scroll-to-top" class="scroll-top" aria-label="Scroll to top">
     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
   </button>
 
-  <script>
-    /* ── THEME ── */
-    const html = document.documentElement;
-    const themeBtn = document.getElementById('theme-btn');
-    const saved = localStorage.getItem('theme');
-    if (saved) html.setAttribute('data-theme', saved);
-    themeBtn.addEventListener('click', () => {
-      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-    });
-
-    /* ── MOBILE MENU ── */
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    function openMenu() {
-      mobileMenu.classList.add('open');
-      menuBtn.classList.add('open');
-      menuBtn.setAttribute('aria-expanded', 'true');
-      menuBtn.setAttribute('aria-label', 'Close menu');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeMenu() {
-      mobileMenu.classList.remove('open');
-      menuBtn.classList.remove('open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-      menuBtn.setAttribute('aria-label', 'Open menu');
-      document.body.style.overflow = '';
-    }
-    menuBtn.addEventListener('click', () => mobileMenu.classList.contains('open') ? closeMenu() : openMenu());
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
-    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-    window.addEventListener('resize', () => { if (window.innerWidth > 768) closeMenu(); }, { passive: true });
-
-
-    /* ── HERO FOCUS SYSTEM ── */
-    const heroBgImg = document.querySelector('.hero-bg img');
-    const heroEl    = document.querySelector('.hero');
-    let blurLevel = 10;
-    let targetBlur = 10;
-    let idleTimer  = null;
-    let rafId      = null;
-    function animateBlur() {
-      const diff = targetBlur - blurLevel;
-      if (Math.abs(diff) < 0.05) {
-        blurLevel = targetBlur;
-        heroBgImg.style.filter = `blur(${blurLevel}px)`;
-        rafId = null;
-        return;
-      }
-      const speed = targetBlur < blurLevel ? 0.18 : 0.08;
-      blurLevel += diff * speed;
-      heroBgImg.style.filter = `blur(${blurLevel.toFixed(2)}px)`;
-      rafId = requestAnimationFrame(animateBlur);
-    }
-
-    function setTarget(px) {
-      targetBlur = px;
-      if (!rafId) rafId = requestAnimationFrame(animateBlur);
-    }
-
-    function scheduleIdle() {
-      clearTimeout(idleTimer);
-      idleTimer = setTimeout(() => setTarget(10), 2000);
-    }
-
-    heroBgImg.style.filter = `blur(10px)`;
-
-    // ── any activity focuses, idle blurs ──
-    function onActivity() { setTarget(0); scheduleIdle(); }
-    window.addEventListener('scroll',     onActivity, { passive: true });
-    window.addEventListener('touchstart', onActivity, { passive: true });
-    window.addEventListener('mousemove',  onActivity, { passive: true });
-    window.addEventListener('keydown',    onActivity, { passive: true });
-
-
-    /* ── SCROLL TOP ── */
-    const scrollBtn = document.getElementById('scroll-to-top');
-    window.addEventListener('scroll', () => scrollBtn.classList.toggle('visible', window.scrollY > 300), { passive: true });
-    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-    /* ── FADE UP ── */
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-  </script>
+  <script src="main.js" defer></script>
 </body>
 </html>
