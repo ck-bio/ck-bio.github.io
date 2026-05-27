@@ -372,7 +372,7 @@ ul { list-style: none; }
 .pub-journal { font-size: 0.8rem; color: var(--text-3); grid-column: 1; margin: 0; font-style: italic; }
 .pub-doi {
   font-size: 0.75rem; color: var(--accent); white-space: nowrap;
-  grid-column: 2; grid-row: 2 / 4; align-self: center;
+  grid-column: 2; grid-row: 2 / 5; align-self: center;
   transition: color 0.2s;
 }
 .pub-doi:hover { color: var(--fg); }
