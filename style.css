@@ -422,3 +422,24 @@ ul { list-style: none; }
 .project-card-body p {
   font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.6; margin: 0;
 }
+
+/* ── GITHUB STAR ── */
+.github-star-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+  border-radius: 6px;
+  font-size: 0.78rem;
+  color: inherit;
+  text-decoration: none;
+  background: transparent;
+}
+
+.github-star-btn:hover {
+  background: color-mix(in srgb, currentColor 8%, transparent);
+}
