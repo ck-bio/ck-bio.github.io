@@ -91,3 +91,15 @@ window.addEventListener('keydown',    onActivity,   { passive: true });
 const scrollBtn = document.getElementById('scroll-to-top');
 window.addEventListener('scroll', () => scrollBtn.classList.toggle('visible', window.scrollY > 300), { passive: true });
 scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* ── REPO STAR COUNTER ── */
+document.querySelectorAll('.star-count').forEach(async (el) => {
+  const repo = el.dataset.repo;
+  try {
+    const res = await fetch(`https://api.github.com/repos/${repo}`);
+    const { stargazers_count } = await res.json();
+    el.textContent = `⭐ ${stargazers_count}`;
+  } catch {
+    el.textContent = '';
+  }
+});
