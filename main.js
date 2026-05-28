@@ -91,5 +91,3 @@ window.addEventListener('keydown',    onActivity,   { passive: true });
 const scrollBtn = document.getElementById('scroll-to-top');
 window.addEventListener('scroll', () => scrollBtn.classList.toggle('visible', window.scrollY > 300), { passive: true });
 scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  }
-});
