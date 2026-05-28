@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — [Your Name]</title>
+  <meta name="description" content="Get in touch." />
+ 
+  <!-- Flash prevention -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t) document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+ 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+ 
+  <style>
+    /* ── Contact page-specific styles ── */
+    .contact-main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: calc(var(--bar) + 5rem) 2rem calc(var(--bar) + env(safe-area-inset-bottom) + 4rem);
+      min-height: 100dvh;
+    }
+ 
+    .contact-wrap {
+      max-width: 520px;
+      width: 100%;
+    }
+ 
+    .contact-heading {
+      font-size: clamp(3rem, 7vw, 4.5rem);
+      margin-top: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+ 
+    .contact-tagline {
+      font-size: 1.05rem;
+      color: var(--text-2);
+      line-height: 1.7;
+      max-width: 38ch;
+      margin-bottom: 2.75rem;
+    }
+ 
+    /* Email block */
+    .email-block {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius-xl);
+      background: var(--glass);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      margin-bottom: 0.75rem;
+      transition: border-color 0.2s;
+    }
+    .email-block:hover { border-color: rgba(5,103,130,0.5); }
+ 
+    .email-text { flex: 1; min-width: 0; }
+    .email-label {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 0.2rem;
+    }
+    .email-address {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      color: var(--fg);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+ 
+    .copy-btn {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      height: 2rem;
+      padding: 0 0.875rem;
+      border-radius: 9999px;
+      border: 1px solid var(--line-strong);
+      background: rgba(5,103,130,0.18);
+      color: rgba(255,255,255,0.75);
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .copy-btn:hover {
+      background: rgba(5,103,130,0.45);
+      border-color: rgba(255,255,255,0.35);
+      color: #fff;
+    }
+    .copy-btn:active { transform: scale(0.95); }
+    .copy-btn.copied {
+      background: rgba(34,197,94,0.18);
+      border-color: rgba(34,197,94,0.45);
+      color: #4ade80;
+    }
+    [data-theme="light"] .copy-btn {
+      background: rgba(255,255,255,0.55);
+      border-color: rgba(5,103,130,0.25);
+      color: rgba(13,36,40,0.8);
+    }
+    [data-theme="light"] .copy-btn:hover {
+      background: rgba(255,255,255,0.85);
+      border-color: rgba(5,103,130,0.5);
+      color: #0d2428;
+    }
+    [data-theme="light"] .copy-btn.copied {
+      background: rgba(34,197,94,0.1);
+      border-color: rgba(34,197,94,0.4);
+      color: #16a34a;
+    }
+ 
+    .contact-note {
+      margin-top: 2rem;
+      font-size: 0.82rem;
+      color: var(--text-3);
+      font-style: italic;
+    }
+ 
+    /* Fade-up animation */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up:nth-child(1) { transition-delay: 0.05s; }
+    .fade-up:nth-child(2) { transition-delay: 0.12s; }
+    .fade-up:nth-child(3) { transition-delay: 0.19s; }
+    .fade-up:nth-child(4) { transition-delay: 0.26s; }
+    .fade-up:nth-child(5) { transition-delay: 0.33s; }
+    .fade-up:nth-child(6) { transition-delay: 0.4s; }
+ 
+    @media (max-width: 540px) {
+      .contact-main { padding: calc(var(--bar) + 3.5rem) 1.25rem calc(var(--bar) + env(safe-area-inset-bottom) + 3rem); }
+    }
+  </style>
+</head>
+<body>
+ 
+  <!-- ── NAV ── -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar-inner">
+      <button class="menu-btn nav-pill" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+ 
+      <ul class="navbar-links" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#tools">Tools</a></li>
+        <li><a href="index.html#publications">Publications</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+ 
+      <div class="nav-controls">
+        <button class="theme-btn nav-pill" id="theme-btn" aria-label="Toggle theme">
+          <span class="theme-icon-wrap" aria-hidden="true">
+            <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </nav>
+ 
+  <!-- ── MOBILE DRAWER ── -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true">
+    <a href="index.html">Home</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="index.html#tools">Tools</a>
+    <a href="index.html#publications">Publications</a>
+    <a href="about.html">About</a>
+    <a href="contact.html" class="active">Contact</a>
+  </div>
+ 
+  <!-- ── MAIN ── -->
+  <main class="contact-main">
+    <div class="contact-wrap">
+ 
+         <h1 class="display-serif contact-heading fade-up">Get in touch.</h1>
+ 
+  
+      <!-- Email -->
+      <div class="email-block fade-up">
+        <div class="email-text">
+          <p class="email-label">Email</p>
+          <p class="email-address" id="email-display">—</p>
+        </div>
+        <button class="copy-btn" id="copy-btn" aria-label="Copy email address">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span id="copy-label">Copy</span>
+        </button>
+      </div>
+ 
+    </div>
+  </main>
+ 
+  <!-- ── FOOTER ── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <!-- LinkedIn -->
+      <a class="footer-icon" href="https://linkedin.com/in/ckoutsakis" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <!-- GitHub -->
+      <a class="footer-icon" href="https://github.com/ck-bio" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      <!-- Google Scholar -->
+      <a class="footer-icon" href="https://scholar.google.com/citations?user=hE_3P08AAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 10a8 8 0 0 1 7.162 3.44L24 9.5z"/></svg>
+      </a>
+      <!-- ORCID -->
+      <a class="footer-icon" href="https://orcid.org/0000-0001-8705-7867" target="_blank" rel="noopener noreferrer" aria-label="ORCID">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.016-5.325 5.016h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg>
+      </a>
+      <!-- ResearchGate -->
+      <a class="footer-icon" href="https://www.researchgate.net/profile/Christos_Koutsakis" target="_blank" rel="noopener noreferrer" aria-label="ResearchGate">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.586 0c-.818 0-1.508.19-2.073.565-.563.377-.97.936-1.213 1.68a12.1 12.1 0 0 0-.368 3.13v2.494h-4.562v-2.57c0-1.502-.13-2.637-.393-3.403C10.708.573 10.25.194 9.65.065 9.05-.065 8.267 0 7.3 0 6.377 0 5.596.072 4.957.218c-.638.146-1.098.52-1.38 1.122-.283.6-.424 1.57-.424 2.913v14.588c0 1.322.14 2.27.424 2.844.283.573.742.944 1.38 1.113.637.168 1.418.222 2.343.16.926-.06 1.61-.31 2.054-.752.443-.44.67-1.124.67-2.052v-5.623h4.562v5.697c0 .928.224 1.613.666 2.054.443.44 1.128.69 2.054.752.926.06 1.707.007 2.343-.16.637-.17 1.097-.54 1.38-1.113.283-.573.424-1.52.424-2.844V4.253c0-1.343-.14-2.313-.424-2.913C20.682.538 20.222.164 19.586 0zm-4.24 14.16c-.926.06-1.61.31-2.054.752-.443.44-.666 1.124-.666 2.052v-5.697h-4.562v5.623c0 .928-.227 1.613-.67 2.052-.444.443-1.128.693-2.054.752-.926.06-1.706.008-2.343-.16-.638-.17-1.097-.54-1.38-1.113C1.33 17.847 1.19 16.9 1.19 15.578V.99h4.08v14.234c0 .928.224 1.613.666 2.054.443.44 1.128.69 2.054.752.926.06 1.707.007 2.343-.16.637-.17 1.097-.54 1.38-1.113.283-.573.424-1.52.424-2.844V.99h4.08v14.234c0 .928-.224 1.613-.666 2.054z"/></svg>
+        </a>
+    </div>
+  </footer>
+ 
+  <!-- scroll-to-top (not visible on a short page but keeps parity with index.html) -->
+  <button class="scroll-top" id="scroll-to-top" aria-label="Back to top">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+ 
+  <script src="main.js"></script>
+  <script>
+    /* ── Email obfuscation + copy ──
+       ROT13-encoded parts, assembled at runtime. Crawlers get nothing useful.
+       To encode your own address: https://rot13.com
+       Replace the three _r values below with ROT13 of each part of your email.
+       Example: 'dave.smith' → 'qnir.fzvgu', 'gmail' → 'tznvy', 'com' → 'pbz'        */
+    const _rot = s => s.replace(/[a-zA-Z]/g, c =>
+      String.fromCharCode(c.charCodeAt(0) + (c.toLowerCase() < 'n' ? 13 : -13)));
+    const _u = 'puxbhgfnxvf'; 
+    const _d = 'tznvy';      
+    const _t = 'pbz';        
+    const email = `${_rot(_u)}@${_rot(_d)}.${_rot(_t)}`;
+    document.getElementById('email-display').textContent = email;
+ 
+    const copyBtn   = document.getElementById('copy-btn');
+    const copyLabel = document.getElementById('copy-label');
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(email);
+      } catch {
+        const ta = document.createElement('textarea');
+        ta.value = email; ta.style.cssText = 'position:fixed;opacity:0';
+        document.body.appendChild(ta); ta.select();
+        document.execCommand('copy'); document.body.removeChild(ta);
+      }
+      copyBtn.classList.add('copied');
+      copyLabel.textContent = 'Copied!';
+      setTimeout(() => { copyBtn.classList.remove('copied'); copyLabel.textContent = 'Copy'; }, 2000);
+    });
+ 
+    /* ── Fade-up observer ── */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
