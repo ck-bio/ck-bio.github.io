@@ -1,8 +1,8 @@
 /* ── THEME ── */
 const html = document.documentElement;
 const themeBtn = document.getElementById('theme-btn');
-const saved = localStorage.getItem('theme');
-if (saved) html.setAttribute('data-theme', saved);
+const saved = localStorage.getItem('theme') || 'dark';
+html.setAttribute('data-theme', saved);
 themeBtn.addEventListener('click', () => {
   const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   html.setAttribute('data-theme', next);
